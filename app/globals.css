@@ -24,6 +24,8 @@
 html,
 body {
     @apply bg-bg-primary text-text-primary font-sans antialiased;
+    height: 100%;
+    overflow-x: hidden;
 }
 
 .container {

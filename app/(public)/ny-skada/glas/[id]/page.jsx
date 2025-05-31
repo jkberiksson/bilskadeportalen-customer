@@ -186,10 +186,6 @@ export default function GlasPageId() {
         }
     };
 
-    if (companyLoading) {
-        return <LoadingSpinner />;
-    }
-
     if (companyError) {
         return (
             <div className='text-center space-y-4 max-w-md mx-auto'>
@@ -204,30 +200,36 @@ export default function GlasPageId() {
         <IsSuccess />
     ) : (
         <>
-            <ChoosenCompany company={company} />
-            <StepIndicator currentStep={currentStep} />
-            <form onSubmit={handleSubmit(onSubmit)}>
-                {currentStep === 1 && <Step1 register={register} errors={errors} />}
-                {currentStep === 2 && <Step2 register={register} errors={errors} />}
-                {currentStep === 3 && <Step3 errors={errors} images={images} setImages={setImages} />}
-                {currentStep === 4 && (
-                    <Step4
-                        register={register}
-                        errors={errors}
-                        signatureRef={signatureRef}
-                        formData={formData}
-                        signatureError={signatureError}
-                        setSignatureError={setSignatureError}
-                    />
-                )}
-                <Buttons isSubmitting={isSubmitting} currentStep={currentStep} nextStep={nextStep} prevStep={prevStep} />
-            </form>
-            {isSubmitting && (
-                <ProgressIndicator
-                    currentStep={submitProgress.current}
-                    totalSteps={submitProgress.total}
-                    message={submitProgress.message}
-                />
+            {companyLoading ? (
+                <LoadingSpinner />
+            ) : (
+                <>
+                    <ChoosenCompany company={company} />
+                    <StepIndicator currentStep={currentStep} />
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        {currentStep === 1 && <Step1 register={register} errors={errors} />}
+                        {currentStep === 2 && <Step2 register={register} errors={errors} />}
+                        {currentStep === 3 && <Step3 errors={errors} images={images} setImages={setImages} />}
+                        {currentStep === 4 && (
+                            <Step4
+                                register={register}
+                                errors={errors}
+                                signatureRef={signatureRef}
+                                formData={formData}
+                                signatureError={signatureError}
+                                setSignatureError={setSignatureError}
+                            />
+                        )}
+                        <Buttons isSubmitting={isSubmitting} currentStep={currentStep} nextStep={nextStep} prevStep={prevStep} />
+                    </form>
+                    {isSubmitting && (
+                        <ProgressIndicator
+                            currentStep={submitProgress.current}
+                            totalSteps={submitProgress.total}
+                            message={submitProgress.message}
+                        />
+                    )}
+                </>
             )}
         </>
     );
