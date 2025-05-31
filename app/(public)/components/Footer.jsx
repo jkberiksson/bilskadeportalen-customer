@@ -108,18 +108,6 @@ export default function Footer() {
                         <p className='text-text-secondary text-sm md:text-base'>
                             © {new Date().getFullYear()} Bilskadeportalen. Alla rättigheter förbehållna.
                         </p>
-                        {/*  <div className='flex gap-6'>
-                            <Link
-                                to='/sitemap'
-                                className='text-text-secondary text-sm md:text-base hover:text-accent-red transition-colors'>
-                                Sitemap
-                            </Link>
-                            <Link
-                                to='/accessibility'
-                                className='text-text-secondary text-sm md:text-base hover:text-accent-red transition-colors'>
-                                Tillgänglighet
-                            </Link>
-                        </div> */}
                     </div>
                 </div>
             </div>

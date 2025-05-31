@@ -47,7 +47,7 @@ export default function GlasPage() {
         );
 
     return (
-        <div>
+        <div className='min-h-[60vh]'>
             <h1 className='text-2xl md:text-3xl font-black tracking-tight text-text-primary mb-6 uppercase text-center'>
                 Välj verkstad för din glasskada
             </h1>

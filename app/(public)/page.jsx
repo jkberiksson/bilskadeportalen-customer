@@ -19,7 +19,7 @@ export default function HomePage() {
                             Vi fixar det!
                         </h2>
                         <p className='text-text-secondary text-sm md:text-base max-w-lg mb-5 md:mb-7'>
-                            Anmäl din skada direkt online och låt oss ta hand om det. Enkel, snabb och effektiv service.
+                            Anmäl din skada direkt online och låt oss koppla dig till en verkstad. Enkelt, snabbt och effektivt.
                         </p>
                         <Link
                             href='/ny-skada'

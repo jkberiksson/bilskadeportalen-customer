@@ -1,9 +1,9 @@
 'use client';
 
 import SignatureCanvas from 'react-signature-canvas';
-import { LuUser, LuCar } from 'react-icons/lu';
+import { LuUser, LuKeySquare } from 'react-icons/lu';
 
-export default function Step4({ register, errors, signatureRef, formData, signatureError, setSignatureError }) {
+export default function Step3({ register, errors, signatureRef, formData, signatureError, setSignatureError }) {
     const clearSignature = () => {
         if (signatureRef.current) {
             signatureRef.current.clear();
@@ -54,7 +54,7 @@ export default function Step4({ register, errors, signatureRef, formData, signat
                 {/* Damage Information */}
                 <div className='space-y-6 bg-white border border-border rounded-xl p-6 shadow'>
                     <div className='flex items-center gap-2 mb-4'>
-                        <LuCar className='w-5 h-5 text-accent-red' />
+                        <LuKeySquare className='w-5 h-5 text-accent-red' />
                         <h4 className='font-bold text-text-primary'>Skadeinformation</h4>
                     </div>
                     <dl className='space-y-3'>
@@ -69,22 +69,6 @@ export default function Step4({ register, errors, signatureRef, formData, signat
                         <div>
                             <dt className='text-sm text-text-secondary'>Skadedatum</dt>
                             <dd className='text-sm font-medium text-text-primary'>{formData.date}</dd>
-                        </div>
-                        <div>
-                            <dt className='text-sm text-text-secondary'>Skadeplats</dt>
-                            <dd className='text-sm font-medium text-text-primary'>{formData.location}</dd>
-                        </div>
-                        <div>
-                            <dt className='text-sm text-text-secondary'>Skademoment</dt>
-                            <dd className='text-sm font-medium text-text-primary'>{formData.damagetype}</dd>
-                        </div>
-                        <div>
-                            <dt className='text-sm text-text-secondary'>Skadeorsak</dt>
-                            <dd className='text-sm font-medium text-text-primary'>{formData.damagecause}</dd>
-                        </div>
-                        <div>
-                            <dt className='text-sm text-text-secondary'>Skadad ruta</dt>
-                            <dd className='text-sm font-medium text-text-primary'>{formData.damagedwindow}</dd>
                         </div>
                         <div>
                             <dt className='text-sm text-text-secondary'>Skadebeskrivning</dt>

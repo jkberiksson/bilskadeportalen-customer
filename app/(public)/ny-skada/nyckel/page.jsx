@@ -42,16 +42,11 @@ export default function NyckelPage() {
         return (
             <div className='text-center space-y-4 max-w-md mx-auto'>
                 <p className='text-accent-red border border-accent-red/10 bg-accent-red/10 p-4 rounded-lg'>Ett fel uppstod: {error}</p>
-                <button
-                    className='bg-black text-white border border-border rounded-lg p-2 w-full cursor-pointer hover:bg-bg-secondary hover:text-black transition-colors'
-                    onClick={() => window.location.reload()}>
-                    Försök igen
-                </button>
             </div>
         );
 
     return (
-        <div>
+        <div className='min-h-[60vh]'>
             <h1 className='text-2xl md:text-3xl font-black tracking-tight text-text-primary mb-6 uppercase text-center'>
                 Välj verkstad för din nyckel
             </h1>

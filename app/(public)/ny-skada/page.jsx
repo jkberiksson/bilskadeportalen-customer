@@ -3,7 +3,7 @@ import { LuKeySquare, LuCar } from 'react-icons/lu';
 
 export default function NySkadaPage() {
     return (
-        <div className='space-y-16'>
+        <div className='min-h-[60vh] space-y-16'>
             <h1 className='text-2xl md:text-3xl font-black tracking-tight text-text-primary mb-6 uppercase text-center'>
                 Vad vill du anmäla?
             </h1>

@@ -1,41 +1,48 @@
-export default function Step2() {
+export default function Step2({ register, errors }) {
     return (
         <div className='space-y-6 bg-white border border-border rounded-xl p-6 shadow my-6'>
-            <h3 className='text-lg font-bold text-text-primary'>Personuppgifter</h3>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                <div>
-                    <label className='block text-xs font-bold mb-1 text-text-primary'>Förnamn</label>
-                    <input type='text' name='firstname' placeholder='John' className='w-full border border-border rounded px-3 py-2' />
-                </div>
-                <div>
-                    <label className='block text-xs font-bold mb-1 text-text-primary'>Efternamn</label>
-                    <input type='text' name='lastname' placeholder='Doe' className='w-full border border-border rounded px-3 py-2' />
-                </div>
-            </div>
+            <h3 className='text-lg font-bold text-text-primary'>Skadeuppgifter</h3>
             <div>
-                <label className='block text-xs font-bold mb-1 text-text-primary'>E-post</label>
+                <label className='block text-xs font-bold mb-1 text-text-primary'>Försäkringsbolag</label>
                 <input
-                    type='email'
-                    name='email'
-                    placeholder='john.doe@example.com'
+                    {...register('insurancecompany')}
+                    type='text'
+                    name='insurancecompany'
+                    placeholder='Folksam'
                     className='w-full border border-border rounded px-3 py-2'
                 />
+                {errors.insurancecompany && <p className='text-xs text-red-500 mt-1'>{errors.insurancecompany.message}</p>}
             </div>
             <div>
-                <label className='block text-xs font-bold mb-1 text-text-primary'>Telefon</label>
-                <input type='tel' name='phone' placeholder='0701234567' className='w-full border border-border rounded px-3 py-2' />
+                <label className='block text-xs font-bold mb-1 text-text-primary'>Mätarställning (km)</label>
+                <input
+                    {...register('odometer')}
+                    type='text'
+                    name='odometer'
+                    placeholder='1234'
+                    className='w-full border border-border rounded px-3 py-2'
+                />
+                {errors.odometer && <p className='text-xs text-red-500 mt-1'>{errors.odometer.message}</p>}
             </div>
             <div>
-                <label className='block text-xs font-bold mb-1 text-text-primary'>Person-/Organisationsnummer</label>
-                <input type='text' name='personalnum' placeholder='000000-0000' className='w-full border border-border rounded px-3 py-2' />
+                <label className='block text-xs font-bold mb-1 text-text-primary'>Skadedatum</label>
+                <input
+                    {...register('date')}
+                    type='date'
+                    name='date'
+                    placeholder='2025-01-01'
+                    className='w-full border border-border rounded px-3 py-2'
+                />
+                {errors.date && <p className='text-xs text-red-500 mt-1'>{errors.date.message}</p>}
             </div>
             <div>
-                <label className='block text-xs font-bold mb-1 text-text-primary'>Momspliktig</label>
-                <select className='w-full border border-border rounded px-3 py-2'>
-                    <option value=''>Välj momspliktig</option>
-                    <option value='Ja'>Ja</option>
-                    <option value='Nej'>Nej</option>
-                </select>
+                <label className='block text-xs font-bold mb-1 text-text-primary'>Skadebeskrivning</label>
+                <textarea
+                    {...register('description')}
+                    name='description'
+                    placeholder='Beskriv skadan...'
+                    className='w-full h-24 border border-border rounded px-3 py-2'></textarea>
+                {errors.description && <p className='text-xs text-red-500 mt-1'>{errors.description.message}</p>}
             </div>
         </div>
     );
