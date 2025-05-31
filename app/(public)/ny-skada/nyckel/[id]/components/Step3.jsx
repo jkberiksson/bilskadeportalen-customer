@@ -85,6 +85,7 @@ export default function Step3({ register, errors, signatureRef, formData, signat
                         <div className='border border-border rounded'>
                             <SignatureCanvas
                                 onBegin={() => setSignatureError(false)}
+                                clearOnResize={false}
                                 ref={signatureRef}
                                 canvasProps={{
                                     className: 'w-full h-48',
