@@ -47,6 +47,7 @@ export default function NyckelPageId() {
 
     useEffect(() => {
         const fetchCompany = async () => {
+            setCompanyLoading(true);
             setCompanyError(null);
             try {
                 const { data, error } = await supabase.from('companies').select('*').eq('id', id).single();
@@ -162,6 +163,10 @@ export default function NyckelPageId() {
         }
     };
 
+    if (companyLoading) {
+        return <LoadingSpinner />;
+    }
+
     if (companyError) {
         return (
             <div className='text-center space-y-4 max-w-md mx-auto'>
@@ -176,35 +181,29 @@ export default function NyckelPageId() {
         <IsSuccess />
     ) : (
         <>
-            {companyLoading ? (
-                <LoadingSpinner />
-            ) : (
-                <>
-                    <ChoosenCompany company={company} />
-                    <StepIndicator currentStep={currentStep} />
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        {currentStep === 1 && <Step1 register={register} errors={errors} />}
-                        {currentStep === 2 && <Step2 register={register} errors={errors} />}
-                        {currentStep === 3 && (
-                            <Step3
-                                register={register}
-                                errors={errors}
-                                formData={formData}
-                                signatureRef={signatureRef}
-                                signatureError={signatureError}
-                                setSignatureError={setSignatureError}
-                            />
-                        )}
-                        <Buttons isSubmitting={isSubmitting} currentStep={currentStep} nextStep={nextStep} prevStep={prevStep} />
-                    </form>
-                    {isSubmitting && (
-                        <ProgressIndicator
-                            currentStep={submitProgress.current}
-                            totalSteps={submitProgress.total}
-                            message={submitProgress.message}
-                        />
-                    )}
-                </>
+            <ChoosenCompany company={company} />
+            <StepIndicator currentStep={currentStep} />
+            <form onSubmit={handleSubmit(onSubmit)}>
+                {currentStep === 1 && <Step1 register={register} errors={errors} />}
+                {currentStep === 2 && <Step2 register={register} errors={errors} />}
+                {currentStep === 3 && (
+                    <Step3
+                        register={register}
+                        errors={errors}
+                        formData={formData}
+                        signatureRef={signatureRef}
+                        signatureError={signatureError}
+                        setSignatureError={setSignatureError}
+                    />
+                )}
+                <Buttons isSubmitting={isSubmitting} currentStep={currentStep} nextStep={nextStep} prevStep={prevStep} />
+            </form>
+            {isSubmitting && (
+                <ProgressIndicator
+                    currentStep={submitProgress.current}
+                    totalSteps={submitProgress.total}
+                    message={submitProgress.message}
+                />
             )}
         </>
     );
