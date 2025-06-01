@@ -52,6 +52,9 @@ export default function NyckelPageId() {
             setCompanyError(null);
             try {
                 const { data, error } = await supabase.from('companies').select('*').eq('id', id).single();
+                if (!data.services.includes('keys')) {
+                    throw new Error('Nyckel är inte tillgänglig för denna tjänst.');
+                }
                 if (error) throw new Error(error.message);
                 setCompany(data);
             } catch (error) {
