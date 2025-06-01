@@ -33,9 +33,10 @@ export default function Footer() {
                             </li>
                             <li>
                                 <Link
-                                    href='/login'
+                                    href='https://bilskadeportalen-admin.vercel.app/'
+                                    target='_blank'
                                     className='text-text-secondary text-sm md:text-base hover:text-accent-red transition-colors'>
-                                    Logga in
+                                    Företagsportalen
                                 </Link>
                             </li>
                             {/* <li>
@@ -50,55 +51,12 @@ export default function Footer() {
 
                     {/* Contact Info */}
                     <div className='space-y-4 md:space-y-6'>
-                        <h3 className='text-sm md:text-base font-black tracking-tight text-text-primary uppercase'>Kontakt</h3>
-                        {/* <ul className='space-y-3'>
-                            <li className='flex items-center gap-3 text-text-secondary text-sm md:text-base group'>
-                                <div className='w-8 h-8 rounded-full bg-accent-red/10 flex items-center justify-center group-hover:bg-accent-red/20 transition-colors'>
-                                    <LuPhone className='text-accent-red w-3 h-3 md:w-4 md:h-4' />
-                                </div>
-                                <span>08-123 45 67</span>
-                            </li>
-                            <li className='flex items-center gap-3 text-text-secondary text-sm md:text-base group'>
-                                <div className='w-8 h-8 rounded-full bg-accent-red/10 flex items-center justify-center group-hover:bg-accent-red/20 transition-colors'>
-                                    <LuMail className='text-accent-red w-3 h-3 md:w-4 md:h-4' />
-                                </div>
-                                <span>info@bilskadeportalen.se</span>
-                            </li>
-                            <li className='flex items-center gap-3 text-text-secondary text-sm md:text-base group'>
-                                <div className='w-8 h-8 rounded-full bg-accent-red/10 flex items-center justify-center group-hover:bg-accent-red/20 transition-colors'>
-                                    <LuMapPin className='text-accent-red w-3 h-3 md:w-4 md:h-4' />
-                                </div>
-                                <span>Kalmar, Sverige</span>
-                            </li>
-                        </ul> */}
+                        {/* <h3 className='text-sm md:text-base font-black tracking-tight text-text-primary uppercase'>Kontakt</h3> */}
                     </div>
 
                     {/* Legal */}
                     <div className='space-y-4 md:space-y-6'>
-                        <h3 className='text-sm md:text-base font-black tracking-tight text-text-primary uppercase'>Juridisk information</h3>
-                        {/* <ul className='space-y-3'>
-                            <li>
-                                <Link
-                                    to='/privacy'
-                                    className='text-text-secondary text-sm md:text-base hover:text-accent-red transition-colors'>
-                                    Integritetspolicy
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to='/terms'
-                                    className='text-text-secondary text-sm md:text-base hover:text-accent-red transition-colors'>
-                                    Användarvillkor
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to='/cookies'
-                                    className='text-text-secondary text-sm md:text-base hover:text-accent-red transition-colors'>
-                                    Cookie-policy
-                                </Link>
-                            </li>
-                        </ul> */}
+                        {/* <h3 className='text-sm md:text-base font-black tracking-tight text-text-primary uppercase'>Information</h3> */}
                     </div>
                 </div>
 
