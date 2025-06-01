@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { LuCloudUpload, LuFile, LuX } from 'react-icons/lu';
 
@@ -35,11 +35,14 @@ const formatFileSize = (bytes) => {
 };
 
 export default function Step3({ errors, images, setImages }) {
-    const onDrop = useCallback((acceptedFiles, id) => {
-        if (acceptedFiles.length > 0) {
-            setImages((prev) => [...prev, { id: id, file: acceptedFiles[0] }]);
-        }
-    }, []);
+    const onDrop = useCallback(
+        (acceptedFiles, id) => {
+            if (acceptedFiles.length > 0) {
+                setImages((prev) => [...prev, { id: id, file: acceptedFiles[0] }]);
+            }
+        },
+        [setImages]
+    );
 
     const removeFile = (id) => {
         setImages((prev) => prev.filter((f) => f.id !== id));
@@ -49,7 +52,7 @@ export default function Step3({ errors, images, setImages }) {
         <div className='space-y-6 bg-white border border-border rounded-xl p-6 shadow my-6'>
             <div>
                 <h3 className='text-lg font-bold text-text-primary'>Bilder</h3>
-                <p className='text-xs text-gray-400'>Accepterade format: JPG, PNG, WEBP, HEIC, HEIF, DNG (max 50MB/bild)</p>
+                <p className='text-xs text-gray-400'>Accepterade format: JPG, PNG, WEBP, HEIC, HEIF, DNG (max 10MB/bild)</p>
             </div>
 
             <div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
@@ -62,11 +65,12 @@ export default function Step3({ errors, images, setImages }) {
                             'application/octet-stream': ['.dng'],
                         },
                         maxFiles: 1,
-                        maxSize: 50 * 1024 * 1024, // 50MB
+                        maxSize: 10 * 1024 * 1024, // 10MB
                     });
 
                     const file = images.find((f) => f.id === id)?.file;
                     const isUnsupportedFormat = file && !['image/jpeg', 'image/png', 'image/webp'].includes(file.type);
+                    const imageUrl = useMemo(() => (file ? URL.createObjectURL(file) : null), [file]);
 
                     return (
                         <div key={id} className='aspect-square'>
@@ -81,13 +85,16 @@ export default function Step3({ errors, images, setImages }) {
                                         </div>
                                     ) : (
                                         <div className='relative h-full'>
-                                            <Image
-                                                width={100}
-                                                height={100}
-                                                src={URL.createObjectURL(file)}
-                                                alt={title}
-                                                className='object-contain w-full h-full'
-                                            />
+                                            {imageUrl && (
+                                                <Image
+                                                    width={100}
+                                                    height={100}
+                                                    src={imageUrl}
+                                                    alt={title}
+                                                    className='object-contain w-full h-full'
+                                                    unoptimized
+                                                />
+                                            )}
                                         </div>
                                     )}
                                     <button
