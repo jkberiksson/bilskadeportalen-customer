@@ -8,42 +8,23 @@ export default function Step2({ register, errors }) {
                     {...register('insurancecompany')}
                     type='text'
                     name='insurancecompany'
-                    placeholder='Folksam'
                     className='w-full border border-border rounded px-3 py-2'
                 />
                 {errors.insurancecompany && <p className='text-xs text-red-500 mt-1'>{errors.insurancecompany.message}</p>}
             </div>
             <div>
                 <label className='block text-xs font-bold mb-1 text-text-primary'>Mätarställning (km)</label>
-                <input
-                    {...register('odometer')}
-                    type='text'
-                    name='odometer'
-                    placeholder='1234'
-                    className='w-full border border-border rounded px-3 py-2'
-                />
+                <input {...register('odometer')} type='text' name='odometer' className='w-full border border-border rounded px-3 py-2' />
                 {errors.odometer && <p className='text-xs text-red-500 mt-1'>{errors.odometer.message}</p>}
             </div>
             <div>
                 <label className='block text-xs font-bold mb-1 text-text-primary'>Skadedatum</label>
-                <input
-                    {...register('date')}
-                    type='date'
-                    name='date'
-                    placeholder='2025-01-01'
-                    className='w-full border border-border rounded px-3 py-2'
-                />
+                <input {...register('date')} type='date' name='date' className='w-full border border-border rounded px-3 py-2' />
                 {errors.date && <p className='text-xs text-red-500 mt-1'>{errors.date.message}</p>}
             </div>
             <div>
                 <label className='block text-xs font-bold mb-1 text-text-primary'>Skadeplats</label>
-                <input
-                    {...register('location')}
-                    type='text'
-                    name='location'
-                    placeholder='E22 Kalmar'
-                    className='w-full border border-border rounded px-3 py-2'
-                />
+                <input {...register('location')} type='text' name='location' className='w-full border border-border rounded px-3 py-2' />
                 {errors.location && <p className='text-xs text-red-500 mt-1'>{errors.location.message}</p>}
             </div>
             <div>
@@ -82,7 +63,6 @@ export default function Step2({ register, errors }) {
                 <textarea
                     {...register('description')}
                     name='description'
-                    placeholder='Beskriv skadan...'
                     className='w-full h-24 border border-border rounded px-3 py-2'></textarea>
                 {errors.description && <p className='text-xs text-red-500 mt-1'>{errors.description.message}</p>}
             </div>

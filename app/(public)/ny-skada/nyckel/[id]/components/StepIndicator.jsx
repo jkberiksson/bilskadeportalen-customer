@@ -1,10 +1,11 @@
-import { LuSignature, LuUser, LuInfo } from 'react-icons/lu';
+import { LuSignature, LuUser, LuInfo, LuCamera } from 'react-icons/lu';
 
 export default function StepIndicator({ currentStep }) {
     const steps = [
         { number: 1, label: 'Personuppg.', icon: LuUser },
         { number: 2, label: 'Skadeuppg.', icon: LuInfo },
-        { number: 3, label: 'Signatur', icon: LuSignature },
+        { number: 3, label: 'Bilder', icon: LuCamera },
+        { number: 4, label: 'Signatur', icon: LuSignature },
     ];
 
     return (
@@ -21,8 +22,8 @@ export default function StepIndicator({ currentStep }) {
                                 isActive
                                     ? 'border-accent-red bg-accent-red text-white'
                                     : isCompleted
-                                    ? 'border-accent-red/50 bg-accent-red/10 text-accent-red'
-                                    : 'border-border bg-bg-primary text-text-secondary'
+                                      ? 'border-accent-red/50 bg-accent-red/10 text-accent-red'
+                                      : 'border-border bg-bg-primary text-text-secondary'
                             }`}>
                             <Icon className='h-4 w-4' />
                         </div>

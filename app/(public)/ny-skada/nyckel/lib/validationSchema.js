@@ -42,5 +42,22 @@ export const formSchema = z.object({
     description: z.string().min(1, 'Skadebeskrivning krävs').max(150, 'Skadebeskrivning får inte vara längre än 150 tecken'),
 
     // Step 3
+    images: z
+        .array(
+            z.object({
+                id: z.string(),
+                file: z.instanceof(File),
+            })
+        )
+        .min(1, 'Du måste ladda upp minst 1 bild på körkort')
+        .refine((files) => files.every(({ file }) => file.size <= 10 * 1024 * 1024), 'Varje bild får inte vara större än 10MB')
+        .refine(
+            (files) =>
+                files.every(({ file }) => {
+                    return ['image/jpeg', 'image/png', 'image/jpg', 'image/webp', 'image/x-adobe-dng'].includes(file.type);
+                }),
+            'Endast JPG, PNG, WEBP, DNG filer är tillåtna'
+        ),
+    // Step 4
     signature: z.string().min(1, 'Namnförtydligande krävs'),
 });

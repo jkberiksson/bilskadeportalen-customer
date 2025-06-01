@@ -16,7 +16,6 @@ export const formSchema = z.object({
         .min(1, 'Registreringsnummer krävs')
         .max(6, 'Registreringsnummer får inte vara längre än 6 tecken')
         .regex(registrationNumberRegex, 'Ogiltigt registreringsnummer (ex: ABC123 eller ABC12A)'),
-    // Step 2
     firstname: z.string().min(1, 'Förnamn krävs').max(50, 'Förnamn får inte vara längre än 50 tecken'),
     lastname: z.string().min(1, 'Efternamn krävs').max(50, 'Efternamn får inte vara längre än 50 tecken'),
     email: z.string().min(1, 'E-post krävs').email('Ogiltig e-postadress'),
@@ -27,7 +26,7 @@ export const formSchema = z.object({
         .regex(personalNumberRegex, 'Ogiltigt person-/organisationsnummer (YYMMDD-XXXX)'),
     vat: z.string().min(1, 'Välj om du är momspliktig'),
 
-    // Step 3
+    // Step 2
     insurancecompany: z.string().min(1, 'Försäkringsbolag krävs'),
     odometer: z.string().min(1, 'Mätarställning krävs').regex(/^\d+$/, 'Mätarställning måste vara ett nummer'),
     date: z
@@ -46,7 +45,7 @@ export const formSchema = z.object({
     damagedwindow: z.string().min(1, 'Skadad ruta krävs'),
     description: z.string().min(1, 'Skadebeskrivning krävs').max(150, 'Skadebeskrivning får inte vara längre än 150 tecken'),
 
-    // Step 4
+    // Step 3
     images: z
         .array(
             z.object({
@@ -55,7 +54,7 @@ export const formSchema = z.object({
             })
         )
         .min(4, 'Du måste ladda upp 4 bilder')
-        .refine((files) => files.every(({ file }) => file.size <= 50 * 1024 * 1024), 'Varje bild får inte vara större än 50MB')
+        .refine((files) => files.every(({ file }) => file.size <= 10 * 1024 * 1024), 'Varje bild får inte vara större än 10MB')
         .refine(
             (files) =>
                 files.every(({ file }) => {
@@ -64,6 +63,6 @@ export const formSchema = z.object({
             'Endast JPG, PNG, WEBP, DNG filer är tillåtna'
         ),
 
-    // Step 5
+    // Step 4
     signature: z.string().min(1, 'Namnförtydligande krävs'),
 });

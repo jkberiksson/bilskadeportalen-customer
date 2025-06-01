@@ -7,9 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { formSchema } from '../lib/validationSchema.js';
-
 import LoadingSpinner from '@/app/(public)/components/LoadingSpinner';
-
 import StepIndicator from './components/StepIndicator';
 import ProgressIndicator from '../../components/ProgressIndicator.jsx';
 import ChoosenCompany from '../../components/ChoosenCompany.jsx';
