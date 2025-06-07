@@ -3,13 +3,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client.js';
-import { v4 as uuidv4 } from 'uuid';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { formSchema } from '../lib/validationSchema.js';
+import { v4 as uuidv4 } from 'uuid';
 import LoadingSpinner from '@/app/(public)/components/LoadingSpinner';
-import StepIndicator from './components/StepIndicator';
 import ProgressIndicator from '../../components/ProgressIndicator.jsx';
+import StepIndicator from './components/StepIndicator';
 import ChoosenCompany from '../../components/ChoosenCompany.jsx';
 import Step1 from './components/Step1';
 import Step2 from './components/Step2';
@@ -17,6 +17,7 @@ import Step3 from './components/Step3';
 import Step4 from './components/Step4';
 import Buttons from './components/Buttons';
 import IsSuccess from '../../components/IsSuccess.jsx';
+import { sendEmail } from '@/app/actions/send-email';
 
 export default function GlasPageId() {
     const { id } = useParams();
@@ -25,9 +26,9 @@ export default function GlasPageId() {
     const [companyError, setCompanyError] = useState(null);
     const supabase = createClient();
     const [currentStep, setCurrentStep] = useState(1);
+    const [signatureError, setSignatureError] = useState(false);
     const signatureRef = useRef(null);
     const [images, setImages] = useState([]);
-    const [signatureError, setSignatureError] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitProgress, setSubmitProgress] = useState({ current: 0, total: 6, message: '' });
     const [isSuccess, setIsSuccess] = useState(false);
@@ -181,6 +182,7 @@ export default function GlasPageId() {
             setSubmitProgress({ current: 0, total: 6, message: '' });
             reset();
             window.scrollTo(0, 0);
+            await sendEmail(company.email, data.registrationnumber, 'glas', company.name);
         } catch (error) {
             console.error('Error:', error);
             setIsSubmitting(false);

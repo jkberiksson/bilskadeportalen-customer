@@ -17,6 +17,7 @@ import Step3 from './components/Step3';
 import Step4 from './components/Step4';
 import Buttons from './components/Buttons';
 import IsSuccess from '../../components/IsSuccess.jsx';
+import { sendEmail } from '@/app/actions/send-email';
 
 export default function NyckelPageId() {
     const { id } = useParams();
@@ -25,12 +26,12 @@ export default function NyckelPageId() {
     const [companyError, setCompanyError] = useState(null);
     const supabase = createClient();
     const [currentStep, setCurrentStep] = useState(1);
-    const signatureRef = useRef(null);
     const [signatureError, setSignatureError] = useState(false);
+    const signatureRef = useRef(null);
+    const [images, setImages] = useState([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitProgress, setSubmitProgress] = useState({ current: 0, total: 4, message: '' });
     const [isSuccess, setIsSuccess] = useState(false);
-    const [images, setImages] = useState([]);
 
     const {
         register,
@@ -177,6 +178,7 @@ export default function NyckelPageId() {
             setSubmitProgress({ current: 0, total: 4, message: '' });
             reset();
             window.scrollTo(0, 0);
+            await sendEmail(company.email, data.registrationnumber, 'nyckel', company.name);
         } catch (error) {
             console.error('Error:', error);
             setIsSubmitting(false);
