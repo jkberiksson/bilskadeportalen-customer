@@ -19,7 +19,7 @@ export const ClaimNotificationEmail = ({ registrationNumber, claimType, companyN
                         <Text className='text-sm'>En ny skadeanmälan har mottagits i Bilskadeportalen som kräver er uppmärksamhet.</Text>
                         <Section className='bg-gray-100 rounded-lg p-4 my-12'>
                             <Text className='text-xs font-bold'>Registreringsnummer</Text>
-                            <Text className='text-xs'>{registrationNumber}</Text>
+                            <Text className='text-xs'>{registrationNumber.toUpperCase()}</Text>
                         </Section>
                         <Text className='text-sm'>Logga in på Bilskadeportalen för att se alla detaljer och hantera ärendet.</Text>
                         <Section className='text-center my-12'>
