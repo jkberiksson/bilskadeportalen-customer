@@ -23,13 +23,12 @@ export default function List({ companies, search, type }) {
                             {company.name}
                         </div>
                         <div className='text-xs text-text-secondary mt-1'>{company.address}</div>
-                        <div className='text-xs text-text-secondary mt-1'>{company.city}</div>
                         <div className='text-xs text-text-secondary mt-1'>
                             {company.zip_code && company.zip_code.replace(/(\d{3})(\d{2})/, '$1 $2')}
                         </div>
+                        <div className='text-xs text-text-secondary mt-1'>{company.city}</div>
 
                         {company.phone && <div className='text-xs text-gray-400 mt-1'>Telefon: {company.phone}</div>}
-                        {company.email && <div className='text-xs text-gray-400 mt-1'>E-post: {company.email}</div>}
                     </div>
                     <LuArrowRight className='text-accent-red text-xl group-hover:translate-x-1 transition-transform' />
                 </Link>
