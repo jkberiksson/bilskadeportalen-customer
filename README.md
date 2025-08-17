@@ -1,103 +1,33 @@
 # Bilskadeportalen Customer
 
-A modern web application built with Next.js for managing vehicle damage claims and customer interactions.
+Next.js app for submitting and handling vehicle damage claims.
 
-## Features
+## Highlights
 
-- Modern UI with Tailwind CSS
-- Form handling with React Hook Form and Zod validation
-- File uploads with React Dropzone
-- Digital signature support
-- Email integration with Resend
-- Database integration with Supabase
-- Motion animations for enhanced UX
+- Modern multi-step wizards for damage claims (glass and key)
+- Form validation with React Hook Form + Zod
+- File uploads (e.g., photos of damage)
+- Digital signature capture
+- Transactional emails via Resend
+- Supabase for data/auth integration
+- Smooth animations with Motion
 
-## Tech Stack
+## Tech stack
 
-- **Framework:** Next.js 15.3.2
-- **UI Library:** React 19
-- **Styling:** Tailwind CSS
-- **Form Handling:** React Hook Form + Zod
-- **Database:** Supabase
-- **Email:** Resend
-- **File Upload:** React Dropzone
-- **Digital Signatures:** React Signature Canvas
+- **Framework:** Next.js 15 / React 19
+- **Styling:** Tailwind CSS v4
+- **Forms & validation:** React Hook Form + Zod
+- **Storage & auth:** Supabase (`@supabase/ssr`, `@supabase/supabase-js`)
+- **Email:** Resend + React Email
+- **Uploads & signature:** React Dropzone, React Signature Canvas
 - **Animations:** Motion
 
-## Getting Started
+## Key flows
 
-### Prerequisites
+- **Glass claim (`/ny-skada/glas`)**: Select company, proceed through steps (`Step1`–`Step4`) with validation (`validationSchema.js`), upload photos, sign, and submit. On success, an email is sent using the server action in `app/actions/send-email.js` with the React Email template in `emails/send-email.jsx`.
+- **Key claim (`/ny-skada/nyckel`)**: Mirrors the glass flow with its own multi-step wizard and validation.
 
-- Node.js (Latest LTS version recommended)
-- npm or yarn
-- Supabase account and project
-- Resend API key
+## Notes
 
-### Installation
-
-1. Clone the repository:
-
-```bash
-git clone [repository-url]
-cd bilskadeportalen-customer
-```
-
-2. Install dependencies:
-
-```bash
-npm install
-# or
-yarn install
-```
-
-3. Set up environment variables:
-   Create a `.env.local` file in the root directory with the following variables:
-
-```env
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-RESEND_API_KEY=your_resend_api_key
-```
-
-4. Run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
-
-## Available Scripts
-
-- `npm run dev` - Start development server with Turbopack
-- `npm run build` - Build the application for production
-- `npm run start` - Start the production server
-- `npm run lint` - Run ESLint for code linting
-
-## Project Structure
-
-```
-├── app/              # Next.js app directory
-├── public/           # Static assets
-├── utils/            # Utility functions
-├── components/       # React components
-└── styles/          # Global styles
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## License
-
-This project is private and proprietary.
-
-## Support
-
-For support, please contact [your-email@example.com]
+- Uses Supabase (data/auth) and Resend (email).
+- Private project.
